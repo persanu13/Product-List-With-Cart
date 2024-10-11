@@ -1,0 +1,26 @@
+.imgContainer {
+  display: inline-block;
+}
+
+.image {
+  width: 310px;
+  height: auto;
+  display: block; /* Elimină spațiul de sub imagine */
+  border-radius: 6px;
+}
+
+.card p {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.card h1 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card h2 {
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--color-red);
+}
