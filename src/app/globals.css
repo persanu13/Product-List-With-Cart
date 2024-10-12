@@ -18,6 +18,7 @@ body {
   overflow-x: hidden;
   font-size: 16px;
   min-height: 100vh;
+  background-color: var(--color-rose-50);
 }
 
 body {

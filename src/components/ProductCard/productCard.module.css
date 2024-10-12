@@ -1,16 +1,82 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0.4rem;
+}
+
 .imgContainer {
-  display: inline-block;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  margin-bottom: 2rem;
 }
 
 .image {
-  width: 310px;
+  width: 100%;
   height: auto;
   display: block; /* Elimină spațiul de sub imagine */
-  border-radius: 6px;
+  border-radius: 10px;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 2.5rem;
+  width: 50%;
+  min-width: 9rem;
+  padding: 1rem;
+  border: 1px var(--color-rose-500) solid;
+  color: var(--color-rose-900);
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-family: var(--font-red-hat-text);
+  font-weight: 700;
+  position: absolute;
+  bottom: -1.25rem;
+  align-self: center;
+  background-color: var(--color-rose-50);
+}
+
+.addContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  height: 2.5rem;
+  width: 50%;
+  min-width: 9rem;
+  padding: 1rem;
+  border: 1px var(--color-rose-500) solid;
+  color: var(--color-rose-50);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-family: var(--font-red-hat-text);
+  font-weight: 600;
+  position: absolute;
+  bottom: -1.25rem;
+  align-self: center;
+  background-color: var(--color-red);
+}
+
+.addContainer button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1.5px var(--color-rose-50);
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
 .card p {
-  font-size: 0.8rem;
+  color: var(--color-rose-500);
+  font-size: 0.85rem;
   font-weight: 400;
 }
 

@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import ProductCardComponent from "@/components/ProductCard/ProductCardComponent";
+import ProductsCartComponent from "@/components/ProductsCart/ProductsCartComponent";
 
 import IProduct from "@/Interfaces/iProduct";
 
@@ -12,16 +13,18 @@ export default async function Home() {
   let products: IProduct[] = await data.json();
   return (
     <main className={styles.page}>
-      <section className={styles.desertsSection}>
-        <h1>Desserts</h1>
-        <GlobalProvider>
+      <GlobalProvider>
+        <section className={styles.desertsSection}>
+          <h1>Desserts</h1>
+
           <div className={styles.productContainer}>
             {products.map((product, index) => (
               <ProductCardComponent key={index} product={product} />
             ))}
           </div>
-        </GlobalProvider>
-      </section>
+        </section>
+        <ProductsCartComponent />
+      </GlobalProvider>
     </main>
   );
 }
