@@ -5,6 +5,7 @@ import IProduct from "@/Interfaces/iProduct";
 // 2. Definirea tipului pentru context (stare și funcții)
 interface GlobalContextType {
   cartData: Map<IProduct, number>;
+  setData: React.Dispatch<React.SetStateAction<Map<IProduct, number>>>;
   setValue: (key: IProduct, value: number) => void;
   deleteKey: (key: IProduct) => void;
   CountProducts: () => number;
@@ -56,7 +57,14 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ cartData: data, setValue, deleteKey, CountProducts, TotalPrice }}
+      value={{
+        cartData: data,
+        setData,
+        setValue,
+        deleteKey,
+        CountProducts,
+        TotalPrice,
+      }}
     >
       {children}
     </GlobalContext.Provider>

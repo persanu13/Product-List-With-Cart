@@ -16,7 +16,6 @@ export default async function Home() {
       <GlobalProvider>
         <section className={styles.desertsSection}>
           <h1>Desserts</h1>
-
           <div className={styles.productContainer}>
             {products.map((product, index) => (
               <ProductCardComponent key={index} product={product} />

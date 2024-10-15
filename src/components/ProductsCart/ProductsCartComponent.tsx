@@ -1,14 +1,17 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./productsCart.module.css";
 import Image from "next/image";
 
-import IProduct from "@/Interfaces/iProduct";
+import ConfirmedModalComponent from "../ConfirmedModal/ConfirmedModalComponent";
 
 import { useGlobalContext } from "@/app/myContext";
+import IProduct from "@/Interfaces/iProduct";
 
 export default function ProductsCartComponent() {
-  const { cartData, deleteKey, CountProducts, TotalPrice } = useGlobalContext();
+  const { cartData, setData, deleteKey, CountProducts, TotalPrice } =
+    useGlobalContext();
+  const [openModal, setOpenModal] = useState(false);
 
   const emptyCart = () => {
     return (
@@ -90,7 +93,14 @@ export default function ProductsCartComponent() {
             This is a <b>carbon-neutral</b> delivery
           </p>
         </div>
-        <button>Confirm Order</button>
+        <button
+          onClick={() => {
+            setOpenModal(true);
+            setData(new Map<IProduct, number>());
+          }}
+        >
+          Confirm Order
+        </button>
       </>
     );
   };
@@ -99,6 +109,12 @@ export default function ProductsCartComponent() {
     <div className={styles.container}>
       <h1>Your Cart ({CountProducts()})</h1>
       {CountProducts() == 0 ? emptyCart() : productsCart()}
+      {openModal && (
+        <ConfirmedModalComponent
+          productsCart={new Map([...cartData])}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </div>
   );
 }
