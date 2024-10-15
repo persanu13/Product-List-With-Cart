@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 4px;
   margin-bottom: 0.4rem;
+  max-width: 400px;
 }
 
 .imgContainer {
@@ -25,7 +26,7 @@
   justify-content: center;
   gap: 6px;
   height: 2.5rem;
-  width: 50%;
+  width: 8rem;
   min-width: 9rem;
   padding: 1rem;
   border: 1px var(--color-rose-500) solid;
@@ -41,13 +42,18 @@
   background-color: var(--color-rose-50);
 }
 
+.addButton:hover {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
 .addContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 6px;
   height: 2.5rem;
-  width: 50%;
+  width: 8rem;
   min-width: 9rem;
   padding: 1rem;
   border: 1px var(--color-rose-500) solid;
@@ -72,6 +78,13 @@
   background-color: transparent;
   border-radius: 100%;
   cursor: pointer;
+}
+
+.addContainer button:hover {
+  background-color: white;
+}
+.addContainer button:hover svg path {
+  fill: var(--color-red);
 }
 
 .card p {

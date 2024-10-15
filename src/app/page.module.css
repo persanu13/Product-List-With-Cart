@@ -1,20 +1,49 @@
 .page {
   font-family: var(--font-red-hat-text);
-  justify-content: center;
-  align-items: center;
   padding: 1.5rem;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 1440px;
+  display: grid;
+  grid-template-columns: minmax(300px, 706px) minmax(280px, 1fr);
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  /* Setează o limită unde grid-ul se rearanjează */
+  .page {
+    grid-template-columns: 1fr; /* Pune elementele unul sub celălalt */
+    margin-top: 0rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Setează o limită unde grid-ul se rearanjează */
+  .page {
+    gap: 25px;
+    grid-template-columns: minmax(630px, 806px) minmax(280px, 368px);
+  }
+}
+
+.desertsSection {
+  display: flex;
+  flex-direction: column;
+  max-width: 806px;
+  width: 100%;
 }
 
 .page h1 {
   font-weight: 700;
   color: var(--color-rose-900);
-  font-size: 2.2rem;
+  font-size: 2.4rem;
 }
 
 .productContainer {
   margin: 2rem 0;
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(222px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }

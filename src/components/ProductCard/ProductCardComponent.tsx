@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ProductCardComponent({ product }: Props) {
-  const { cartData, setValue, deleteValue } = useGlobalContext();
+  const { cartData, setValue, deleteKey } = useGlobalContext();
 
   const pressAdd = () => {
     setValue(product, 1);
@@ -22,7 +22,7 @@ export default function ProductCardComponent({ product }: Props) {
   };
   const decrement = () => {
     if (cartData.get(product) == 1) {
-      deleteValue(product);
+      deleteKey(product);
       return;
     }
     setValue(product, cartData.get(product)! - 1);
@@ -48,21 +48,30 @@ export default function ProductCardComponent({ product }: Props) {
         {cartData.has(product) ? (
           <div className={styles.addContainer}>
             <button onClick={decrement}>
-              <Image
-                src="/assets/images/icon-decrement-quantity.svg"
-                alt="deccrement button icon"
-                width={10}
-                height={2}
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="2"
+                fill="none"
+                viewBox="0 0 10 2"
+              >
+                <path fill="#fff" d="M0 .375h10v1.25H0V.375Z" />
+              </svg>
             </button>
             {cartData.get(product)}
             <button onClick={increment}>
-              <Image
-                src="/assets/images/icon-increment-quantity.svg"
-                alt="increment button icon"
-                width={10}
-                height={10}
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="10"
+                fill="none"
+                viewBox="0 0 10 10"
+              >
+                <path
+                  fill="#fff"
+                  d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                />
+              </svg>
             </button>
           </div>
         ) : (
