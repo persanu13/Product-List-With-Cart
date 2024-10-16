@@ -8,8 +8,6 @@ interface GlobalContextType {
   setData: React.Dispatch<React.SetStateAction<Map<IProduct, number>>>;
   setValue: (key: IProduct, value: number) => void;
   deleteKey: (key: IProduct) => void;
-  CountProducts: () => number;
-  TotalPrice: () => number;
 }
 
 // 3. Inițializarea contextului (cu `undefined` la început pentru a obliga folosirea în interiorul provider-ului)
@@ -37,24 +35,6 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  //Functia pentru numararea totala a valorilor
-  const CountProducts = (): number => {
-    let count: number = 0;
-    for (const value of data.values()) {
-      count += value;
-    }
-    return count;
-  };
-
-  //Functia pentru suma preturilor
-  const TotalPrice = (): number => {
-    let totalPrice: number = 0;
-    for (const [key, value] of data.entries()) {
-      totalPrice += key.price * value;
-    }
-    return totalPrice;
-  };
-
   return (
     <GlobalContext.Provider
       value={{
@@ -62,8 +42,6 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         setData,
         setValue,
         deleteKey,
-        CountProducts,
-        TotalPrice,
       }}
     >
       {children}

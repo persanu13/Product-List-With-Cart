@@ -8,10 +8,16 @@ import ConfirmedModalComponent from "../ConfirmedModal/ConfirmedModalComponent";
 import { useGlobalContext } from "@/app/myContext";
 import IProduct from "@/Interfaces/iProduct";
 
+import { TotalPrice, CountProducts } from "@/utils/productsFunctions";
+
 export default function ProductsCartComponent() {
-  const { cartData, setData, deleteKey, CountProducts, TotalPrice } =
-    useGlobalContext();
+  const { cartData, setData, deleteKey } = useGlobalContext();
   const [openModal, setOpenModal] = useState(false);
+
+  const closeModal = (): void => {
+    setData(new Map<IProduct, number>());
+    setOpenModal(false);
+  };
 
   const emptyCart = () => {
     return (
@@ -69,7 +75,7 @@ export default function ProductsCartComponent() {
           <span
             style={{ textAlign: "right", fontSize: "1.6rem", fontWeight: 700 }}
           >
-            ${TotalPrice().toFixed(2)}
+            ${TotalPrice(cartData).toFixed(2)}
           </span>
         </p>
         <div className={styles.carbonDelivery}>
@@ -96,7 +102,6 @@ export default function ProductsCartComponent() {
         <button
           onClick={() => {
             setOpenModal(true);
-            setData(new Map<IProduct, number>());
           }}
         >
           Confirm Order
@@ -107,12 +112,12 @@ export default function ProductsCartComponent() {
 
   return (
     <div className={styles.container}>
-      <h1>Your Cart ({CountProducts()})</h1>
-      {CountProducts() == 0 ? emptyCart() : productsCart()}
+      <h1>Your Cart ({CountProducts(cartData)})</h1>
+      {CountProducts(cartData) == 0 ? emptyCart() : productsCart()}
       {openModal && (
         <ConfirmedModalComponent
           productsCart={new Map([...cartData])}
-          setOpenModal={setOpenModal}
+          closeModal={closeModal}
         />
       )}
     </div>

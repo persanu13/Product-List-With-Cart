@@ -1,16 +1,20 @@
 "use client";
 import React from "react";
+import Image from "next/image";
+
 import styles from "./confirmedModal.module.css";
 import IProduct from "@/Interfaces/iProduct";
 
+import { TotalPrice } from "@/utils/productsFunctions";
+
 type Props = {
   productsCart: Map<IProduct, number>;
-  setOpenModal: (value: React.SetStateAction<boolean>) => void;
+  closeModal: () => void;
 };
 
 export default function ConfirmedModalComponent({
   productsCart,
-  setOpenModal,
+  closeModal,
 }: Props) {
   return (
     <div className={styles.modal}>
@@ -37,27 +41,36 @@ export default function ConfirmedModalComponent({
           <ul>
             {Array.from(productsCart).map(([product, value], index) => (
               <li key={index}>
+                <Image
+                  src={product.image.thumbnail}
+                  alt="product mini image"
+                  width="50"
+                  height="48"
+                />
                 <div className={styles.textContainer}>
-                  <h1>{product.name}</h1>
+                  <h2>{product.name}</h2>
                   <p>
-                    <span className={styles.value}>{value}x</span>@ $
+                    <span className={styles.value}>{value}x</span> @ $
                     {product.price.toFixed(2)}
-                    <span style={{ fontWeight: 600 }}>
-                      ${(product.price * value).toFixed(2)}
-                    </span>
                   </p>
                 </div>
+                <h1>${(value * product.price).toFixed(2)}</h1>
               </li>
             ))}
           </ul>
+          <p className={styles.p}>
+            Order Total{" "}
+            <span
+              style={{
+                fontSize: "1.4rem",
+                fontWeight: 700,
+              }}
+            >
+              ${TotalPrice(productsCart).toFixed(2)}
+            </span>
+          </p>
         </div>
-        <button
-          onClick={() => {
-            setOpenModal(false);
-          }}
-        >
-          Start New Order
-        </button>
+        <button onClick={closeModal}>Start New Order</button>
       </div>
     </div>
   );
