@@ -8,10 +8,16 @@ import { GlobalProvider } from "./myContext";
 
 export default async function Home() {
   const baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const data = await fetch(`${baseURL}/data.json`, {
-    cache: "no-store",
-  });
-  const products: IProduct[] = await data.json();
+  let products: IProduct[] = [];
+  try {
+    const data = await fetch(`${baseURL}/data.json`, {
+      cache: "no-store",
+    });
+    const products: IProduct[] = await data.json();
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+
   return (
     <main className={styles.page}>
       <GlobalProvider>
