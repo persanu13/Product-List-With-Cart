@@ -7,7 +7,8 @@ import IProduct from "@/Interfaces/iProduct";
 import { GlobalProvider } from "./myContext";
 
 export default async function Home() {
-  const data = await fetch("http://localhost:3000/data.json", {
+  const baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  const data = await fetch(`${baseURL}/data.json`, {
     cache: "no-store",
   });
   const products: IProduct[] = await data.json();
