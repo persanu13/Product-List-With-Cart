@@ -7,10 +7,10 @@ import IProduct from "@/Interfaces/iProduct";
 import { GlobalProvider } from "./myContext";
 
 export default async function Home() {
-  let data = await fetch("http://localhost:3000/data.json", {
+  const data = await fetch("http://localhost:3000/data.json", {
     cache: "no-store",
   });
-  let products: IProduct[] = await data.json();
+  const products: IProduct[] = await data.json();
   return (
     <main className={styles.page}>
       <GlobalProvider>
